@@ -1,18 +1,14 @@
-<?php
-    use PHPMailer\PHPMailer\PHPMailer;
-    require_once "PHPMailer/PHPMailer.php";
-    require_once "PHPMailer/SMTP.php";
-    require_once "PHPMailer/Exception.php";
-?>
-<html>
+<!DOCTYPE html>
+  <html>
     <head>
-        <title>Contacto</title>
+        <title>Inicio</title>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
     </head>
+
     <body style="background-color: rgb(53, 1, 15);">
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <a class="navbar-brand" href="#"><img src="img/logo.png" height="25" alt="CoolBrand">Tech Co.</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
                 aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -59,56 +55,8 @@
                 </div>
             </div>
         </nav>
-        <h2>Contactanos</h2>
-        <form action="form.php" method="post">
+        <div style="background-color: rgb(53, 1, 15);">
             
-            <label>Nombre(s):</label>
-            <input type="text" name="nombre"><br><br>
-            <label>Apellidos:</label>
-            <input type="text" name="apellidos"><br><br>
-            <label>Numero Telefonico:</label>
-            <input type="text" name="telefono"><br><br>
-            <label>Correo Electronico:</label>
-            <input type="text" name="email"><br><br>
-            <label>Asunto:</label>
-            <textarea type="text" name="asunto"></textarea><br><br>
-            <button type="submit" name="submit" class="btn btn-primary">Enviar Forma</button>
-            <!--<input type="submit" value="Enviar" name="submit"><br><br>-->
-        </form>
-
-    <?php
-        if(isset($_POST['nombre']) && isset($_POST['email'])){
-            $nombre = $_POST['nombre'];
-            $apellidos = $_POST['apellidos'];
-            $telefono = $_POST['telefono'];
-            $email = $_POST['email'];
-            $asunto = $_POST['asunto'];
-            
-            $mail = new PHPMailer(true);
-
-            //$mail->SMTPDebug = 3;
-            $mail->isSMTP();
-            $mail->Host = "smtp.gmail.com";
-            $mail->SMTPAuth = true;
-            $mail->Username = "z170.pc@gmail.com";
-            $mail->Password = 'metalmaniac2.';
-            $mail->Port = 587;
-            $mail->SMTPSecure = "tls";
-
-
-            $mail->isHTML(true);
-            $mail->setFrom($email, $nombre);
-            $mail->addAddress($email);
-            $mail->Subject = "Test";
-            $mail->Body = $asunto;
-
-            try {
-                $mail->send();
-                echo "Message has been sent successfully";
-            } catch (Exception $e) {
-                echo "Mailer Error: " . $mail->ErrorInfo;
-            }
-        }
-    ?>
-
-</html>
+        </div>
+    </body>
+  </html>
