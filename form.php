@@ -7,72 +7,37 @@
 <html>
     <head>
         <title>Contacto</title>
+        <link rel="stylesheet" href="style.css">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
     </head>
-    <body style="background-color: rgb(53, 1, 15);">
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-            <a class="navbar-brand" href="#"><img src="img/logo.png" height="25" alt="CoolBrand">Tech Co.</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
-                aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNavDropdown">
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">¿Quienes Somos?</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Ubicacion</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="form.php">Contacto</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
-                            aria-haspopup="true" aria-expanded="false">
-                            Proyectos
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <a class="dropdown-item" href="#">Software</a>
-                            <a class="dropdown-item" href="#">Hardware</a>
-                        </div>
-                    </li>
-                </ul>
+
+    <body class="bdy">
+        <?php include('navbar.php');?>
+        <h2 class="txt">Contáctanos</h2>
+        <form class="fm1" action="form.php" method="post">
+            <div class="form-group">
+                <label class="lbl">Nombre(s):</label>
+                <input class="form-control col-centered col-md-4" type="text" name="nombre" required>
             </div>
-            <div class="datetime">
-                <label style="color: darkgray; margin-top: 6px; margin-right: 20px;"><?php 
-                    setlocale(LC_ALL, "es_ES", 'Spanish_Spain', 'Spanish');
-                    echo iconv('ISO-8859-2', 'UTF-8', strftime("%A, %d de %B del %Y"));
-                    date_default_timezone_set('America/Tijuana');
-                    $date = date(" g:i a"); 
-                    echo $date; ?></label>
+            <div class="form-group">
+                <label class="lbl">Apellidos:</label>
+                <input class="form-control col-centered col-md-4" type="text" name="apellidos" required>
             </div>
-            <div class="navbar-nav ml-auto">
-                <div class="nav-item dropdown">
-                    <a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle user-action"><img src="img/user.png" height="25" class="avatar">Bienvenido, Oscar</a>
-                    <div class="dropdown-menu">
-                        <a href="#" class="dropdown-item">Perfil</a>
-                        <a href="#" class="dropdown-item">Salir de Sesion</a>
-                    </div>
-                </div>
+            <div class="form-group">
+                <label class="lbl">Número Telefónico:</label>
+                <input class="form-control col-centered col-md-4" type="text" name="telefono" required>
             </div>
-        </nav>
-        <h2>Contactanos</h2>
-        <form action="form.php" method="post">
-            
-            <label>Nombre(s):</label>
-            <input type="text" name="nombre"><br><br>
-            <label>Apellidos:</label>
-            <input type="text" name="apellidos"><br><br>
-            <label>Numero Telefonico:</label>
-            <input type="text" name="telefono"><br><br>
-            <label>Correo Electronico:</label>
-            <input type="text" name="email"><br><br>
-            <label>Asunto:</label>
-            <textarea type="text" name="asunto"></textarea><br><br>
-            <button type="submit" name="submit" class="btn btn-primary">Enviar Forma</button>
+            <div class="form-group">
+                <label class="lbl">Correo Electrónico:</label>
+                <input class="form-control col-centered col-md-4" type="text" name="email" required>
+            </div>
+            <div class="form-group">
+                <label class="lbl">Asunto:</label>
+                <textarea class="form-control col-centered col-md-4" rows="4" cols="50" type="text" name="asunto" required></textarea><br>
+            </div>
+            <button type="submit" name="submit" class="btn btn-primary">Enviar</button>
             <!--<input type="submit" value="Enviar" name="submit"><br><br>-->
         </form>
 
@@ -90,21 +55,21 @@
             $mail->isSMTP();
             $mail->Host = "smtp.gmail.com";
             $mail->SMTPAuth = true;
-            $mail->Username = "z170.pc@gmail.com";
-            $mail->Password = 'metalmaniac2.';
+            $mail->Username = "tech@gmail.com";  //Aqui se ingresa un correo electronico de Gmail
+            $mail->Password = 'passw00rd';       //Contraseña
             $mail->Port = 587;
             $mail->SMTPSecure = "tls";
 
-
             $mail->isHTML(true);
-            $mail->setFrom($email, $nombre);
-            $mail->addAddress($email);
-            $mail->Subject = "Test";
-            $mail->Body = $asunto;
+            $mail->setFrom("empleos@solucionesdelmar.com", $nombre);
+            $mail->addAddress("empleos@solucionesdelmar.com");
+            $mail->Subject = "Consulta";
+            $mail->Body = nl2br("Nombre(s): $nombre\nApellidos: $apellidos\nTelefono: $telefono\nCorreo Electronico: $email\nAsunto: $asunto");
 
             try {
                 $mail->send();
-                echo "Message has been sent successfully";
+                $message = "La informacion ha sido enviada correctamente!";
+                echo "<script type='text/javascript'>alert('$message');</script>";
             } catch (Exception $e) {
                 echo "Mailer Error: " . $mail->ErrorInfo;
             }
